@@ -27,7 +27,19 @@
 
     <div class="header-actions">
       <input type="search" placeholder="Search" class="search">
-      <a href="#" class="login">Login</a>
+    @guest
+        <a href="{{ route('login') }}" class="nav-link">Login</a>
+        <a href="{{ route('register') }}" class="nav-link">Register</a>
+    @endguest
+
+    @auth
+        <span class="nav-user">{{ auth()->user()->name }}</span>
+
+        <form method="POST" action="{{ route('logout') }}" class="inline">
+            @csrf
+            <button type="submit" class="nav-link">Logout</button>
+        </form>
+    @endauth
     </div>
   </div>
 

@@ -8,8 +8,9 @@
 @section('content')
 <h1>Ragebaits</h1>
 
-
+@Auth
 <a href="{{ route('ragebaits.create') }}">Create new Ragebait</a>
+@endauth
 
 @if ($ragebaits->isEmpty())
     <p>No ragebaits yet.</p>
@@ -42,6 +43,7 @@
       </div>
     </a>
 
+    @Auth
     <div class="ragebait-actions">
       <a href="{{ route('ragebaits.edit', $ragebait) }}">Edit</a>
 
@@ -51,6 +53,7 @@
         <button type="submit">Delete</button>
       </form>
     </div>
+    @endauth
 
   </div>
 
