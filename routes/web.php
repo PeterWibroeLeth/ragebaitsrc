@@ -1,21 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RagebaitController;
 
 Route::get('/', function () {
-    return view('index');
+    return redirect()->route('ragebaits.index');
 });
 
-Route::post('/create', function (Request $request) {
-
-    $validated = $request->validate([
-        'title' => 'required',
-        'tier' => 'required',
-        'description' => 'required',
-    ]);
-
-    return redirect('/')
-        ->with('success', 'Entity added successfully')
-        ->with('ragebait', $validated);
-});
+Route::resource('ragebaits', RagebaitController::class);

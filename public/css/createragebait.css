@@ -1,0 +1,99 @@
+.create-wrap{
+  max-width: 1100px;          /* større bredde */
+  margin: 48px auto;
+  padding: 0 16px;
+
+  display: grid;
+  grid-template-columns: 1fr 360px; /* form | preview */
+  gap: 24px;
+  align-items: start;
+}
+
+
+.create-card{
+  background: rgba(18,18,18,.75);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+
+
+.create-wrap .create-card h1.create-title {
+  color: hsl(0, 0%, 95%);
+}
+
+.create-wrap .create-card p.create-subtitle {
+  color: rgba(255,255,255,.8);
+}
+
+.create-form{ display: grid; gap: 14px; }
+
+.field label{
+  display:block;
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: .4px;
+  color: rgba(255,255,255,.75);
+}
+
+.field input,
+.field select,
+.field textarea{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  outline: none;
+}
+
+.field textarea{
+    resize: vertical;
+    min-height: 120px;
+    max-height: 300px;
+}
+
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color: rgba(220,66,81,.65);
+  box-shadow: 0 0 0 4px rgba(220,66,81,.18);
+}
+
+.actions{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  margin-top: 8px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-ghost{
+  color: rgba(255,255,255,.75);
+  border-color: rgba(255,255,255,.12);
+  background: transparent;
+}
+
+.btn-ghost:hover{ color:#fff; }
+
+.btn-primary{
+  background: #dc4251;
+}
+
+
