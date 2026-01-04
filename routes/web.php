@@ -16,17 +16,6 @@ Route::post('/register', [AuthController::class, 'register'])->middleware('guest
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 /*
-| Public ragebaits
-*/
-Route::get('/', [RagebaitController::class, 'index'])
-    ->name('ragebaits.index');
-
-Route::get('/ragebaits', [RagebaitController::class, 'index']);
-
-Route::get('/ragebaits/{ragebait}', [RagebaitController::class, 'show'])
-    ->name('ragebaits.show');
-
-/*
 | Protected ragebaits
 */
 Route::middleware('auth')->group(function () {
@@ -36,3 +25,16 @@ Route::middleware('auth')->group(function () {
     Route::put('/ragebaits/{ragebait}', [RagebaitController::class, 'update'])->name('ragebaits.update');
     Route::delete('/ragebaits/{ragebait}', [RagebaitController::class, 'destroy'])->name('ragebaits.destroy');
 });
+
+
+
+/*
+| Public ragebaits
+*/
+Route::get('/', [RagebaitController::class, 'index'])
+    ->name('ragebaits.index');
+
+Route::get('/ragebaits', [RagebaitController::class, 'index']);
+
+Route::get('/ragebaits/{ragebait}', [RagebaitController::class, 'show'])
+    ->name('ragebaits.show');

@@ -34,24 +34,53 @@ class RagebaitController extends Controller
         return view('ragebaits.create');
     }
 
+    public function edit(Ragebait $ragebait)
+    {
+        return view('ragebaits.edit', compact('ragebait'));
+    }
+
+
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string',
-            'image' => 'required|image',
-            'frame' => 'required|string',
-            'tier' => 'required|string',
-            'tier_tier' => 'nullable|string',
-            'description' => 'required|string',
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
+            'frame' => ['required', 'string', 'in:gold,silver,bronze'],
+            'tier' => ['required', 'string', 'in:s,a,b,c,d'],
+            'tier_tier' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
 
-        $data['image'] = $request->file('image')->store('ragebaits', 'public');
+        $validated['image'] = $request->file('image')->store('ragebaits', 'public');
+        $validated['user_id'] = auth()->id();
 
-        Ragebait::create($data);
+        Ragebait::create($validated);
 
         return redirect()
             ->route('ragebaits.index')
             ->with('success', 'Ragebait created');
+    }
+
+    public function update(Request $request, Ragebait $ragebait)
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
+            'frame' => ['required', 'in:gold,silver,bronze'],
+            'tier' => ['required', 'in:s,a,b,c,d'],
+            'tier_tier' => ['nullable', 'integer', 'min:1', 'max:2'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('ragebaits', 'public');
+        }
+
+        $ragebait->update($validated);
+
+        return redirect()
+            ->route('ragebaits.show', $ragebait)
+            ->with('success', 'Ragebait updated');
     }
 
 }

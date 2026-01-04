@@ -8,14 +8,15 @@
 @section('content')
 <h1>Ragebaits</h1>
 
-@Auth
-<a href="{{ route('ragebaits.create') }}">Create new Ragebait</a>
-@endauth
+
 
 @if ($ragebaits->isEmpty())
     <p>No ragebaits yet.</p>
 @else
 <div class="page-wrap">
+@auth
+<a href="{{ route('ragebaits.create') }}">Create new Ragebait</a>
+@endauth
 <div class="ragebait-grid">
 @foreach ($ragebaits as $ragebait)
 
